@@ -1,0 +1,100 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Enigmatic Experiments</title>
+  <meta name="description" content="Enigma data experiments">
+  <meta name="author" content="Cristen Jones">
+
+  <link rel="stylesheet" href="style.css">
+ <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script> -->
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" ></script>
+ <script>
+
+
+
+</script>
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+<div class="container">
+
+  <div class="left-sidebar">
+     <nav>
+      <ul>
+        <li>Data explorer</li>
+      </ul>
+     </nav>
+  </div><!-- .left-sidebar -->
+
+  <div class="content">
+
+    <div>
+      <h2>Extract data from Enigma.io</h2>
+      <p>I put this together to give us an easier way to download the data. This will give you requested data in CSV format. Right now it only returns the first 500 rows.</p>
+      <p>Your API key is authorized to make 200 API calls... so don't click through all the steps more than 200 times per day :)</p>
+      <form id="api">
+        <input type="text" placeholder="enter Enigma API key" id="myapi"></input>
+        <input type="submit" name="submit" type="submit">
+      </form>
+    </div>
+
+    <div class="tableselect">
+      <select id="table" disabled="true">
+        <p>Only data from the AMS dataset is available for now.</p>
+        <option selected="true" disabled="true">Select a table</option>
+        <option value="us.gov.customs.ams.header.2013">Bills Of Lading Headers 2013</option> 
+        <option value="us.gov.customs.ams.cargodesc.2013">Cargo Descriptions 2013</option> 
+        <option value="us.gov.customs.ams.consignee.2013">Consignees 2013</option>
+        <option value="us.gov.customs.ams.container.2013">Containers 2013</option>
+        <option value="us.gov.customs.ams.billgen.2013">General Bill Information 2013</option>
+        <option value="us.gov.customs.ams.hazmatclass.2013">Hazardous Materials Classification 2013</option>
+        <option value="us.gov.customs.ams.hazmat.2013">Hazardous Material Details 2013</option>
+        <option value="us.gov.customs.ams.marksnumbers.2013">Marks & Numbers 2013</option>
+        <option value="us.gov.customs.ams.notifyparty.2013">Notified Parties 2013</option>
+        <option value="us.gov.customs.ams.shipper.2013">Shippers 2013</option>
+        <option value="us.gov.customs.ams.tariff.2013">Tarriffs 2013</option>
+      </select>
+      <div id="list"></div>
+
+
+    </div>
+
+    <div class="querywrite">
+
+      <form id="query">
+        <h3>Use the fieldnames listed above to build your query!</h3>
+        <p><input type="text" name="select" placeholder="field1,field2,..."></input>
+        <br>Select field. Default will return all fields.</p>
+        <p><input type="text" name="search" placeholder="searchterm or @field searchterm"></input>
+        <br>Search phrase to filter results. To match multiple queries, the | (or) operator can be used e.g. "searchterm1|searchterm2".</p>
+        <p><input type="text" name="where" placeholder="field=number"></input>
+        <br>Where clause (can take =, >, or <). Only applies to columns with numerical data.</p>
+        <p><input type="text" name="sort" placeholder="field+"></input>
+        <br>Sort rows. + denotes ascending order, - denotes descending.</p>
+        <p><input type="submit" id="submitquery" value="Preview your query (might take some time to load)" type="submit" disabled="true"></p>
+      </form>
+
+      <div id="preview"></div>
+
+      <div id="csv"></div>
+
+      <button id="export" disabled="true">Export this data (will open a new window)</button>
+
+      <p class="download"></p>
+
+
+    </div>
+
+  </div><!-- .content -->
+
+</div><!-- .container-->
+
+<script src="enigmaexportcsv.js"></script>
+</body>
+</html>
